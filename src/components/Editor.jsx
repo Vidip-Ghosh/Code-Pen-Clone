@@ -51,9 +51,11 @@ export const Editor = ({heading,icon,color,value,onChange}) =>{
                     <CloseFullscreenIcon fontSize='small' style={{alignSelf:'center'}} onClick={()=> setOpen(prevState => !prevState)} />   
                 </Header>
                 <ControlledEditor className='controlled-editor' value={value} onBeforeChange={handleChange} options={{
-                    theme:'material',
+                    lineWrapping: true,
+                    lint: true,
                     lineNumbers: true,
-                }} 
+                    theme: 'material'
+                }}
             />
             </Container>
         </Container>
