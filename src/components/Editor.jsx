@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import Box from '@mui/material/Box';
 import {styled} from '@mui/material'
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
@@ -9,6 +9,7 @@ import 'codemirror/mode/xml/xml'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/css/css'
 import '../App.css'
+import PropTypes from 'prop-types';
 
 export const Editor = ({heading,icon,color,value,onChange}) =>{
     const Heading = styled(Box)`
@@ -31,13 +32,14 @@ export const Editor = ({heading,icon,color,value,onChange}) =>{
         display: flex;
         flex-direction: column;
         padding: 0px 7px;
+        width:32.3vw;
     `
 
     const handleChange = (editor,data,value) =>{
         onChange(value);
     }
     const [open,setOpen] = useState(true)
-    // style={open ? null : {flexGrow:0}}
+
     return (
         <Container style={open ? null : {flexGrow:0}}>
             <Container style={{marginTop:74.3}}>
@@ -51,8 +53,17 @@ export const Editor = ({heading,icon,color,value,onChange}) =>{
                 <ControlledEditor className='controlled-editor' value={value} onBeforeChange={handleChange} options={{
                     theme:'material',
                     lineNumbers: true,
-                }}/>
+                }} 
+            />
             </Container>
         </Container>
     )
+}
+
+Editor.propTypes = {
+    heading: PropTypes.node.isRequired,
+    icon: PropTypes.node.isRequired,
+    color: PropTypes.node.isRequired,
+    value: PropTypes.node.isRequired,
+    onChange: PropTypes.node.isRequired
 }
